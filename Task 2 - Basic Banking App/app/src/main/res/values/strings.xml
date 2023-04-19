@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BOS</string>
+    <string name="banking_system_app">Bank of Sparks</string>
+    <string name="all_users">Users</string>
+    <string name="all_transactions">View Transactions</string>
+    <string name="author">RASHAD H</string>
+</resources>
