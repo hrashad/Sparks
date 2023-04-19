@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favi.png" type="image/x-icon">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+
+    <title>Customer</title>
+</head>
+<body>
+    <?php 
+    include 'config.php';
+    include 'nav.php';
+    ?>
+    
+    <div class="container_tab" style="margin-top:70px; margin-left:200px; margin-right:200px;">
+<h2>All Customers</h2>
+<!--a class="btn btn-warning btn-sm"  href="view.php?id=<?php echo $row['id'];?>">View/Transfer</a-->
+    <table id="example" class="table table-hover">
+        <thead class="">
+            <tr>
+                <th>SI No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Balance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
+            $sql = "SELECT * FROM customer";
+            $result = $conn->query($sql);
+
+            if(!$result){
+                die("Invalid query: " .$conn->error);
+            }
+            while($row = $result->fetch_assoc()){
+            ?>
+
+            <tr>
+                <td><?php echo $row['id'];?></td>
+                <td><?php echo $row['name'];?></td>
+                <td><?php echo $row['email'];?></td>
+                <td><?php echo $row['balance'];?></td>
+                <td><a class="btn btn-warning btn-sm"  href="view.php?id=<?php echo $row['id'];?>">View/Transfer</a></td>
+
+            </tr>
+
+            <?php  
+            } 
+            ?>
+        </tbody>
+    </table>
+</div>
+
+<div class="dev fixed-bottom" style="background:#bdc6ce; color:black; width:100%; text-align:center; padding:4px; font-size:14px; letter-spacing:.2em; font-weight:bold;">
+        Designed and Developed by &copy; <a href="https://www.linkedin.com/in/rashad-h/" style="text-decoration: none;">RASHAD H</a> 
+    </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+    
+</body>
+</html>
